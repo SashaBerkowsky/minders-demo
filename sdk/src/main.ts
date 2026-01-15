@@ -1,24 +1,37 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import * as v from "valibot";
+import { ConfigSchema } from "./domain/validation";
+import { FetchFeedbackRepository } from "./infrastructure/http/fetchAdapter";
+import { LocalUserStorageAdapter } from "./infrastructure/storage/userAdapter";
+import { SubmitFeedbackUseCase } from "./application/submitFeedback";
+import { FeedbackWidget } from "./infrastructure/widget";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+class FeedbackSDK {
+    static init(rawConfig: unknown) {
+        const configResult = v.safeParse(ConfigSchema, rawConfig)
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+        if (!configResult.success) {
+            console.error(
+                "[FeedbackSDK] Configuración inválida:",
+                configResult.issues,
+            );
+            return
+        }
+
+        const config = configResult.output
+        const repository = new FetchFeedbackRepository()
+        const storage = new LocalUserStorageAdapter()
+
+        const submitUseCase = new SubmitFeedbackUseCase(
+            repository,
+            storage,
+            config,
+        )
+
+        const widget = new FeedbackWidget(submitUseCase, config)
+        widget.init()
+
+        console.log("[FeedbackSDK] Inicializado correctamente")
+    }
+}
+
+(window as any).FeedbackSDK = FeedbackSDK
