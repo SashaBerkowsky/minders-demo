@@ -4,11 +4,12 @@ import { randomUUID } from 'crypto'
 class FeedbackRepository {
     private feedbackStore: Feedback[] = []
 
-    async save(feedbackData: CreateFeedbackDTO): Promise<Feedback> {
+    async save(feedbackData: CreateFeedbackDTO, projectId: string): Promise<Feedback> {
         const feedbackEntry: Feedback = {
             ...feedbackData,
             id: randomUUID(),
-            createdAt: new Date()
+            createdAt: new Date(),
+            projectId
         }
 
         this.feedbackStore.push(feedbackEntry)

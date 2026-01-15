@@ -9,7 +9,7 @@ const app = express()
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'minders-api-key']
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-project-id']
 }));
 
 app.use(express.json())

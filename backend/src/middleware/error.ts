@@ -4,7 +4,7 @@ export const errorHandler = (
     err: any,
     req: Request,
     res: Response,
-    next: NextFunction
+    _: NextFunction
 ) => {
     console.error(`[Error] ${req.method} ${req.url}:`, err.message || err)
     const statusCode = err.status || 500

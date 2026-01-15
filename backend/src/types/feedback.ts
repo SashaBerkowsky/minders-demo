@@ -8,4 +8,4 @@ export interface Feedback {
     createdAt: Date
 }
 
-export type CreateFeedbackDTO = Omit<Feedback, 'id' | 'createdAt'>
+export type CreateFeedbackDTO = Omit<Feedback, 'id' | 'createdAt' | 'projectId'>

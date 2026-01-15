@@ -6,7 +6,9 @@ export class FeedbackController {
     static async submit(req: Request, res: Response, next: NextFunction) {
         try {
             const feedbackData: CreateFeedbackDTO = req.body
-            const result = await feedbackService.createFeedback(feedbackData)
+            const projectId = (req as any).projectId;
+
+            const result = await feedbackService.createFeedback(feedbackData, projectId)
 
             return res.status(201).json({
                 success: true,

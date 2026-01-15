@@ -1,15 +1,24 @@
 import { Request, Response, NextFunction } from 'express'
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const apiKey = req.headers['minders-api-key']
-    const VALID_API_KEY = process.env.API_KEY || 'minders_secret_key'
+    const authHeader = req.headers.authorization
 
-    if (!apiKey || apiKey !== VALID_API_KEY) {
+    if (!authHeader || !authHeader.startsWith('ApiKey ')) {
         return res.status(401).json({
-            error: 'Unauthorized',
-            message: 'Invalid or missing API Key'
+            success: false,
+            error: 'Missing or invalid Authorization format. Use "ApiKey <your_key>"'
         })
     }
 
-    next();
+    const apiKey = authHeader.split(' ')[1]
+    const VALID_API_KEY = process.env.API_KEY || 'minders_secret_key'
+
+    if (apiKey !== VALID_API_KEY) {
+        return res.status(403).json({
+            success: false,
+            error: 'Invalid API Key'
+        })
+    }
+
+    next()
 }
