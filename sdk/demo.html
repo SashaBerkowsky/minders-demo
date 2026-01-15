@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Integración SDK</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f4f4f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        text-align: center;
+      }
+      h1 {
+        color: #18181b;
+      }
+      p {
+        color: #52525b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Mi Tienda Online</h1>
+      <p>
+        Esta es una página de prueba. Mira abajo a la derecha para ver el widget
+        de feedback flotante.
+      </p>
+      <p>
+        <small
+          >Prueba desconectar tu internet y enviar feedback para ver el sistema
+          de reintentos.</small
+        >
+      </p>
+    </div>
+
+    <script src="./feedback-sdk.es.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        if (window.FeedbackSDK) {
+          window.FeedbackSDK.init({
+            projectId: "demo_dark",
+            apiKey: "minders_secret_key",
+            apiEndpoint: "http://localhost:4000/api/feedback",
+
+            // dark mode
+            theme: {
+              primaryColor: "#8b5cf6",
+              backgroundColor: "#18181b",
+              textColor: "#f4f4f5",
+              borderColor: "#3f3f46",
+              inputBackgroundColor: "#27272a",
+            },
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
