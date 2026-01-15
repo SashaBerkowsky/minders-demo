@@ -8,6 +8,10 @@ export interface Feedback {
     comment?: string
     timestamp: string
     createdAt: Date
+    deviceInfo: {
+        url: string
+        userAgent: string
+    }
 }
 
 export type CreateFeedbackDTO = Omit<Feedback, 'id' | 'createdAt' | 'projectId'>
