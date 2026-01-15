@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import { FeedbackRequest } from '../types'
 
-export const projectCheckMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const injectProjectId = (req: FeedbackRequest, res: Response, next: NextFunction) => {
     const projectId = req.headers['x-project-id'];
 
     if (!projectId || typeof projectId !== 'string') {
