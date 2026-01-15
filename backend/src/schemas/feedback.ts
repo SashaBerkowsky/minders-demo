@@ -8,4 +8,4 @@ export const createFeedbackSchema = z.object({
         comment: z.string().max(1000).optional(),
         timestamp: z.string().datetime({ message: "Invalid ISO timestamp" }),
     })
-})
+}).strict()

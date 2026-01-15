@@ -9,12 +9,12 @@ const app = express()
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-project-id']
+    allowedHeaders: ['Content-Type', 'Authorization', 'minders-api-key']
 }));
 
 app.use(express.json())
 
-app.use('/api/feedback', routes)
+app.use('/api', routes)
 
 app.use((_, res) => {
     res.status(404).json({ error: 'Route not found.' })
