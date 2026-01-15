@@ -1,9 +1,16 @@
 import express from 'express'
+import cors from 'cors'
 import routes from './routes'
 import { errorHandler } from './middleware'
 
 const PORT = process.env.PORT || 3000
 const app = express()
+
+app.use(cors({
+    origin: '*', // For a public-facing SDK, '*' or a dynamic whitelist is common
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-project-id'] // Add your custom headers here!
+}));
 
 app.use(express.json())
 
