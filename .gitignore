@@ -1,2 +1,34 @@
+# --- Dependencies ---
 node_modules/
+.pnpm-store/
+
+# --- Environment & Secrets ---
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Build & Output ---
+dist/
+build/
+*.tsbuildinfo
+out/
+
+# --- Debug & Logs ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# --- IDE & Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# --- Coverage/Tests ---
+coverage/
+.nyc_output/
