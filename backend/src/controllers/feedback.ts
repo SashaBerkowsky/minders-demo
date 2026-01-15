@@ -1,14 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import { feedbackService } from '../services'
-import { CreateFeedbackDTO } from '../types'
+import { FeedbackRequest } from '../types'
 
 export class FeedbackController {
-    static async submit(req: Request, res: Response, next: NextFunction) {
+    static async submit(req: FeedbackRequest, res: Response, next: NextFunction) {
         try {
-            const feedbackData: CreateFeedbackDTO = req.body
-            const projectId = (req as any).projectId;
-
-            const result = await feedbackService.createFeedback(feedbackData, projectId)
+            const result = await feedbackService.createFeedback(req.body, req.projectId)
 
             return res.status(201).json({
                 success: true,

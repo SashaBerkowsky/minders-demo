@@ -10,7 +10,7 @@ export const projectCheckMiddleware = (req: Request, res: Response, next: NextFu
         });
     }
 
-    (req as any).projectId = projectId;
+    req.projectId = projectId;
 
     next();
 };

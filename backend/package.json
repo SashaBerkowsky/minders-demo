@@ -11,6 +11,7 @@
     "dev": "node --env-file=.env -r ts-node/register src/index.ts"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.8",
     "nodemon": "^3.1.11",
