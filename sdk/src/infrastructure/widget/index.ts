@@ -95,9 +95,7 @@ export class FeedbackWidget {
                 this.updateStars(stars, rating)
             })
 
-            star.addEventListener("mouseleave", () => {
-                this.updateStars(stars, this.rating)
-            })
+            star.addEventListener("mouseleave", () => this.updateStars(stars, this.rating))
         })
 
         const handleSubmit = async () => {
