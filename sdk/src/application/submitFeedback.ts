@@ -17,7 +17,7 @@ export class SubmitFeedbackUseCase {
         this.config = config
     }
 
-    async execute(rating: number, comment: string): Promise<void> {
+    async execute(rating: number, comment: string): Promise<Feedback> {
         const rawFeedback = {
             userId: this.storage.getUserId(),
             rating,
@@ -45,5 +45,7 @@ export class SubmitFeedbackUseCase {
         )
 
         this.storage.recordSubmission()
+
+        return result.output
     }
 }
