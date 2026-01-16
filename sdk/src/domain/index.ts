@@ -1,2 +1,2 @@
 export * from './feedback'
-export * from './validation'
+export * from './config'

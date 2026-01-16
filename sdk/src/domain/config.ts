@@ -1,3 +1,5 @@
+import type { Feedback } from './'
+
 export interface SDKConfig {
     projectId: string
     apiKey: string
@@ -5,4 +7,7 @@ export interface SDKConfig {
     theme?: {
         primaryColor?: string
     }
+    onSuccess?: (feedback: Feedback) => void
+    onError?: (error: Error) => void
+    debug?: boolean
 }
