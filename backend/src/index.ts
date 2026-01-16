@@ -22,7 +22,6 @@ app.use((_, res) => {
 
 app.use(errorHandler)
 
-console.log('DEBUG: Raw Process Port:', process.env.PORT);
 app.listen(PORT, () => {
     console.log(`🚀 Server ready at: http://localhost:${PORT}`);
     console.log(`📡 Health check: http://localhost:${PORT}/api/feedback/health`);

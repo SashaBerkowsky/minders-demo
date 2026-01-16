@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --env-file=.env -r ts-node/register src/index.ts"
+    "dev": "nodemon --exec tsx --env-file=.env src/index.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
@@ -16,6 +16,7 @@
     "@types/node": "^25.0.8",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
