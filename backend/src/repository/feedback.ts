@@ -1,10 +1,10 @@
-import { Feedback, CreateFeedbackDTO } from '../types'
+import type { IFeedbackRepository, Feedback, CreateFeedbackDTO } from '../types'
 import { randomUUID } from 'crypto'
 
-class FeedbackRepository {
+export class LocalFeedbackRepository implements IFeedbackRepository {
     private feedbackStore: Feedback[] = []
 
-    async save(feedbackData: CreateFeedbackDTO, projectId: string): Promise<Feedback> {
+    save = async (feedbackData: CreateFeedbackDTO, projectId: string): Promise<Feedback> => {
         const feedbackEntry: Feedback = {
             ...feedbackData,
             id: randomUUID(),
@@ -18,13 +18,11 @@ class FeedbackRepository {
         return feedbackEntry
     }
 
-    async findAll(): Promise<Feedback[]> {
+    findAll = async (): Promise<Feedback[]> => {
         return this.feedbackStore
     }
 
-    async findByProject(projectId: string): Promise<Feedback[]> {
+    findByProject = async (projectId: string): Promise<Feedback[]> => {
         return this.feedbackStore.filter(f => f.projectId === projectId)
     }
 }
-
-export const feedbackRepository = new FeedbackRepository()

@@ -1,11 +1,17 @@
+import type { FeedbackService } from '../services'
+import type { FeedbackRequest } from '../types'
 import { Request, Response, NextFunction } from 'express'
-import { feedbackService } from '../services'
-import { FeedbackRequest } from '../types'
 
 export class FeedbackController {
-    static async submit(req: FeedbackRequest, res: Response, next: NextFunction) {
+    private feedbackService: FeedbackService
+
+    constructor(feedbackService: FeedbackService) {
+        this.feedbackService = feedbackService
+    }
+
+    submit = async (req: FeedbackRequest, res: Response, next: NextFunction) => {
         try {
-            const result = await feedbackService.createFeedback(req.body, req.projectId)
+            const result = await this.feedbackService.createFeedback(req.body, req.projectId)
 
             return res.status(201).json({
                 success: true,
@@ -17,14 +23,14 @@ export class FeedbackController {
         }
     }
 
-    static async getByProject(req: Request, res: Response, next: NextFunction) {
+    getByProject = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { projectId } = req.params
             if (typeof projectId !== 'string' || !projectId) {
                 return res.status(400).json({ error: 'Valid Project ID is required' })
             }
 
-            const results = await feedbackService.getProjectFeedback(projectId)
+            const results = await this.feedbackService.getProjectFeedback(projectId)
             return res.status(200).json(results)
         } catch (err) {
             next(err)
