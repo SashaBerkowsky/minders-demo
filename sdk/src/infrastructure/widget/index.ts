@@ -83,10 +83,20 @@ export class FeedbackWidget {
         })
 
         stars.forEach((star) => {
-            star.addEventListener("click", (e) => {
+            star.addEventListener("click", e => {
                 const target = e.currentTarget as HTMLElement
                 this.rating = parseInt(target.dataset.value || "0")
-                this.updateStars(stars)
+                this.updateStars(stars, this.rating)
+            })
+
+            star.addEventListener("mouseenter", e => {
+                const target = e.currentTarget as HTMLElement
+                const rating = parseInt(target.dataset.value || "0")
+                this.updateStars(stars, rating)
+            })
+
+            star.addEventListener("mouseleave", () => {
+                this.updateStars(stars, this.rating)
             })
         })
 
@@ -120,11 +130,11 @@ export class FeedbackWidget {
         })
     }
 
-    private updateStars(stars: NodeListOf<Element>) {
+    private updateStars(stars: NodeListOf<Element>, rating: number) {
         stars.forEach((star) => {
             const s = star as HTMLElement
             const val = parseInt(s.dataset.value || "0")
-            if (val <= this.rating) s.classList.add("active")
+            if (val <= rating) s.classList.add("active")
             else s.classList.remove("active")
         })
     }
@@ -170,6 +180,6 @@ export class FeedbackWidget {
         const input = this.root.getElementById("comment") as HTMLTextAreaElement
         if (input) input.value = ""
         this.rating = 0
-        this.updateStars(this.root.querySelectorAll(".star"))
+        this.updateStars(this.root.querySelectorAll(".star"), 0)
     }
 }
