@@ -7,19 +7,29 @@ const renderStars = (): string => {
 }
 
 export const getFeedbackTemplate = (): string => `
-    <div class="modal" id="modal">
+      <div class="modal" id="modal">
         <div id="view-form" class="view-section">
-            <h3>Tu opinión</h3>
+            <h3>Your feedback</h3>
             <div class="stars" id="stars-container">${renderStars()}</div>
-            <textarea id="comment" placeholder="Comentario..."></textarea>
-            <button id="submit" class="submit-btn">Enviar</button>
+            <div class="error" id="rating-error"></div>
+            <textarea id="comment" placeholder="Comment..."></textarea>
+            <div class="error" id="comment-error"></div>
+            <button id="submit" class="submit-btn">Submit</button>
         </div>
         <div id="view-error" class="view-section hidden error-view">
             ${ICONS.alert}
-            <p>Error al enviar</p>
-            <button id="retry" class="retry-btn">${ICONS.refresh} Reintentar</button>
-            <button id="cancel" class="cancel-link">Cancelar</button>
+            <p id="error-message">Connection failed. Please try again.</p>
+            <button id="retry" class="retry-btn">${ICONS.refresh} Try again</button>
+            <button id="cancel" class="cancel-link">Cancel</button>
         </div>
-    </div>
-    <button id="trigger" class="trigger-btn">${ICONS.chat}</button>
+        <div id="view-success" class="view-section hidden success-view">
+            ${ICONS.check}
+            <p>Feedback sent successfully!</p>
+        </div>
+        <div id="view-rate-limit" class="view-section hidden rate-limit-view">
+            ${ICONS.warning}
+            <button id="rate-limit-ok" class="cancel-link">Cancel</button>
+        </div>
+      </div>
+      <button id="trigger" class="trigger-btn">${ICONS.chat}</button>
 `
