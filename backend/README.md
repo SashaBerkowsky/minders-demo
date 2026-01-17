@@ -43,7 +43,7 @@ Node.js/Express API for feedback storage using hexagonal architecture.
   ```
 
 ## Storage
-- Uses Prisma (SQLite) for persistent storage.
+- Uses Prisma (SQLite) for persistent storage of projects and feedback.
 
 ## ADR
 See [docs/adr.md](../docs/adr.md).

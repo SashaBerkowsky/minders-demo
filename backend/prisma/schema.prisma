@@ -26,6 +26,6 @@ model Feedback {
   comment    String?
   timestamp  String
   createdAt  DateTime @default(now())
-  deviceInfo String   // JSON as string
+  deviceInfo String   // JSON string
   project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
