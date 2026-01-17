@@ -15,7 +15,6 @@ export class LocalFeedbackRepository implements IFeedbackRepository {
 
         this.feedbackStore.push(feedbackEntry)
 
-        console.log("Feedback saved in memory", feedbackEntry)
         return feedbackEntry
     }
 
