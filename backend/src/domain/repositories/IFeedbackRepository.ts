@@ -1,4 +1,4 @@
-import type { Feedback } from '../entities/feedback'
+import type { Feedback } from '../entities/Feedback'
 import type { CreateFeedbackDTO } from '@application'
 
 export interface IFeedbackRepository {
