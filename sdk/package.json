@@ -19,13 +19,14 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
     "build:test": "npm run build && cp demo.html ./dist && vite preview",
-    "test": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/ui": "^4.0.17",
     "jsdom": "^27.4.0",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
