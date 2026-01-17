@@ -13,7 +13,6 @@ export const errorHandler = (
         success: false,
         error: {
             message: err.message || 'Internal Server Error',
-            // Only show stack trace if we are NOT in production
             stack: process.env.NODE_ENV === 'production' ? undefined : err.stack,
         }
     });

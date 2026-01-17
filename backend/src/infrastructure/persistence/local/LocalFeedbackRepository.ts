@@ -1,4 +1,5 @@
-import type { IFeedbackRepository, Feedback, CreateFeedbackDTO } from '../types'
+import type { IFeedbackRepository, Feedback } from '@domain'
+import type { CreateFeedbackDTO } from '@application'
 import { randomUUID } from 'crypto'
 
 export class LocalFeedbackRepository implements IFeedbackRepository {

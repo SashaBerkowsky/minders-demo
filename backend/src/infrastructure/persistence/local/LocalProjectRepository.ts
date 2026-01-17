@@ -1,4 +1,5 @@
-import type { IProjectRepository, Project, CreateProjectDTO } from '../types'
+import type { IProjectRepository, Project } from '@domain'
+import type { CreateProjectDTO } from '@application'
 
 export class LocalProjectRepository implements IProjectRepository {
     private projectStore: Project[] = []
@@ -18,7 +19,7 @@ export class LocalProjectRepository implements IProjectRepository {
     }
 
     findById = async (id: string) => {
-        return this.projectStore.find(p => p.id === id)
+        return this.projectStore.find(p => p.id === id) || undefined
     }
 
     private async save(projectData: CreateProjectDTO): Promise<Project> {

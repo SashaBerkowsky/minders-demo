@@ -1,8 +1,23 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": ["node"]
-  }
+    "strict": true,
+    "baseUrl": "./",
+    "typeRoots": ["./node_modules/@types", "./src/infrastructure/http/types"],
+    "types": ["node"],
+    "paths": {
+      "@domain": ["src/domain/index"],
+      "@application": ["src/application/index"],
+      "@infrastructure": ["src/infrastructure/index"],
+      "@domain/*": ["src/domain/*"],
+      "@application/*": ["src/application/*"],
+      "@infrastructure/*": ["src/infrastructure/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

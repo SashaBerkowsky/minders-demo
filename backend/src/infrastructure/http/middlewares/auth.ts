@@ -1,5 +1,6 @@
 import type { RequestHandler, Response, NextFunction } from 'express'
-import type { FeedbackRequest, IProjectRepository } from '../types'
+import type { IProjectRepository } from '@domain'
+import type { FeedbackRequest } from '../types/FeedbackRequest'
 
 export const authMiddleware = (projectRepository: IProjectRepository): RequestHandler => {
     return async (req: FeedbackRequest, res: Response, next: NextFunction) => {

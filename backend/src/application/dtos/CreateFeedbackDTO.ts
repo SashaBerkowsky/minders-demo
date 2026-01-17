@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const createFeedbackSchema = z.object({
+export const CreateFeedbackSchema = z.object({
     body: z.object({
         userId: z.string().uuid({ message: "User ID must be a valid UUID" }),
         rating: z.number().int().min(1).max(5),
@@ -16,3 +16,5 @@ export const createFeedbackSchema = z.object({
     query: z.object({}).optional(),
     params: z.object({}).optional()
 })
+
+export type CreateFeedbackDTO = z.infer<typeof CreateFeedbackSchema>['body']
