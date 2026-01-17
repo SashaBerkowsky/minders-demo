@@ -1,24 +1,41 @@
-import { Request, Response, NextFunction } from 'express'
+import type { RequestHandler, Response, NextFunction } from 'express'
+import type { FeedbackRequest, IProjectRepository } from '../types'
 
-export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    const authHeader = req.headers.authorization
+export const authMiddleware = (projectRepository: IProjectRepository): RequestHandler => {
+    return async (req: FeedbackRequest, res: Response, next: NextFunction) => {
+        try {
+            const authHeader = req.headers.authorization
+            const projectId = req.headers['x-project-id'] as string
 
-    if (!authHeader || !authHeader.startsWith('ApiKey ')) {
-        return res.status(401).json({
-            success: false,
-            error: 'Missing or invalid Authorization format. Use "ApiKey <your_key>"'
-        })
+            if (!authHeader || !authHeader.startsWith('ApiKey ')) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Missing or invalid Authorization format. Use "ApiKey <your_key>"'
+                })
+            }
+
+            const apiKey = authHeader.split(' ')[1]
+            if (!projectId) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Missing Project ID. Use x-project-id header.'
+                })
+            }
+
+            const project = await projectRepository.findById(projectId)
+
+            if (!project || project.apiKey !== apiKey) {
+                return res.status(403).json({
+                    success: false,
+                    error: 'Unauthorized. Invalid credentials'
+                })
+            }
+
+            req.projectId = projectId
+
+            return next()
+        } catch (err) {
+            return next(err)
+        }
     }
-
-    const apiKey = authHeader.split(' ')[1]
-    const VALID_API_KEY = process.env.API_KEY || 'minders_secret_key'
-
-    if (apiKey !== VALID_API_KEY) {
-        return res.status(403).json({
-            success: false,
-            error: 'Invalid API Key'
-        })
-    }
-
-    next()
 }

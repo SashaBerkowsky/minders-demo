@@ -21,8 +21,4 @@ export class LocalFeedbackRepository implements IFeedbackRepository {
     findAll = async (): Promise<Feedback[]> => {
         return this.feedbackStore
     }
-
-    findByProject = async (projectId: string): Promise<Feedback[]> => {
-        return this.feedbackStore.filter(f => f.projectId === projectId)
-    }
 }

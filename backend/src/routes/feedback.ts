@@ -1,11 +1,11 @@
 import { Router } from 'express'
 import { feedbackController } from '../instances'
-import { injectProjectId, validate } from '../middleware'
+import { validate } from '../middleware'
 import { createFeedbackSchema } from '../schemas'
+import { authGuard } from '../instances'
 
 const router = Router()
 
-router.post('/', injectProjectId, validate(createFeedbackSchema), feedbackController.submit)
-router.get('/project/:projectId', feedbackController.getByProject)
+router.post('/', authGuard, validate(createFeedbackSchema), feedbackController.submit)
 
 export default router
