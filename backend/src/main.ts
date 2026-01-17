@@ -1,27 +1,36 @@
+import "dotenv/config";
 import { createServer } from '@infrastructure/http/server';
 import { createApiRouter } from '@infrastructure/http/routes';
 import { FeedbackController } from '@infrastructure/http/controllers';
 import { SubmitFeedbackUC } from '@application';
-import { LocalFeedbackRepository, LocalProjectRepository } from '@infrastructure/persistence';
+import { LocalFeedbackRepository, PrismaProjectRepository } from '@infrastructure/persistence';
 import { authMiddleware } from '@infrastructure/http/middlewares';
+import { PrismaClient } from '@prisma/client';
 
-const feedbackRepo = new LocalFeedbackRepository();
-const projectRepo = new LocalProjectRepository();
-const submitFeedbackUC = new SubmitFeedbackUC(feedbackRepo);
-const feedbackController = new FeedbackController(submitFeedbackUC);
-const authGuard = authMiddleware(projectRepo);
+const prisma = new PrismaClient();
+const projectRepo = new PrismaProjectRepository(prisma);
 
-projectRepo.seed()
+const main = async () => {
+    await projectRepo.seed();
 
-const apiRouter = createApiRouter({
-    feedbackController,
-    authGuard
-});
+    const feedbackRepo = new LocalFeedbackRepository();
+    const submitFeedbackUC = new SubmitFeedbackUC(feedbackRepo);
+    const feedbackController = new FeedbackController(submitFeedbackUC);
+    const authGuard = authMiddleware(projectRepo);
 
-const app = createServer(apiRouter);
+    const apiRouter = createApiRouter({
+        feedbackController,
+        authGuard
+    });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`🚀 Server ready at: http://localhost:${PORT}`);
-    console.log(`📡 Health check: http://localhost:${PORT}/api/feedback/health`);
-})
+    const app = createServer(apiRouter);
+
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`🚀 Server ready at: http://localhost:${PORT}`);
+        console.log(`📡 Health check: http://localhost:${PORT}/api/feedback/health`);
+        console.log('📊 Using Prisma for project storage');
+    });
+}
+
+main()

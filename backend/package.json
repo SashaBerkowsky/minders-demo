@@ -10,7 +10,10 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "dev": "nodemon --exec tsx --env-file=.env src/main.ts"
+    "dev": "nodemon --exec tsx --env-file=.env src/main.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
@@ -28,9 +31,12 @@
     "vitest": "^4.0.17"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "prisma": "^5.22.0",
     "zod": "^4.3.5"
   }
 }
