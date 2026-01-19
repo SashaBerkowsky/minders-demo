@@ -1,8 +1,5 @@
 # ADR: My Technology and Architecture Choices for the Minders Feedback Widget Solution
 
-## Status
-Accepted
-
 ## Context
 As the developer, I built a full-stack feedback collection system: a browser SDK widget and a Node.js API. The challenge required end-to-end functionality, developer experience, security, maintainability, and hexagonal architecture. I prioritized simplicity, type safety, and ease of testing while ensuring reliable data flow from widget to backend.
 
