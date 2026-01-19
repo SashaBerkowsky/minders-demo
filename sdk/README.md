@@ -10,7 +10,7 @@ Browser widget SDK for embedding feedback forms.
 ## Usage
 ### Via Script Tag
 ```html
-<script src="path/to/minders-feedback-sdk.js"></script>
+<script src="path/to/minders-feedback-sdk.umd.js"></script>
 <script>
   window.FeedbackSDK.init({
     projectId: "0",

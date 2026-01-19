@@ -7,7 +7,7 @@
     <style>
       body {
         font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background-color: #f4f4f5;
         display: flex;
         flex-direction: column;
@@ -47,22 +47,22 @@
       </p>
     </div>
 
-    <script src="./dist/feedback-sdk.es.js"></script>
+    <script src="./dist/minders-feedback-sdk.umd.js"></script>
     <script>
-      window.addEventListener("load", () => {
+      window.addEventListener('load', () => {
         if (window.FeedbackSDK) {
           window.FeedbackSDK.init({
-            projectId: "0",
-            apiKey: "minders_secret_key_0",
-            apiEndpoint: "http://localhost:3000/api/feedback",
+            projectId: '0',
+            apiKey: 'minders_secret_key_0',
+            apiEndpoint: 'http://localhost:3000/api/feedback',
 
             // dark mode
             theme: {
-              primaryColor: "#8b5cf6",
-              backgroundColor: "#18181b",
-              textColor: "#f4f4f5",
-              borderColor: "#3f3f46",
-              inputBackgroundColor: "#27272a",
+              primaryColor: '#8b5cf6',
+              backgroundColor: '#18181b',
+              textColor: '#f4f4f5',
+              borderColor: '#3f3f46',
+              inputBackgroundColor: '#27272a',
             },
           });
         }

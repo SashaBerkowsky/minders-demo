@@ -1,17 +1,19 @@
 {
   "name": "minders-demo-sdk",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "files": [
     "dist"
   ],
   "main": "./dist/minders-feedback-sdk.cjs",
   "module": "./dist/minders-feedback-sdk.js",
+  "browser": "./dist/minders-feedback-sdk.umd.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "browser": "./dist/minders-feedback-sdk.umd.js",
       "import": "./dist/minders-feedback-sdk.js",
       "require": "./dist/minders-feedback-sdk.cjs"
     }
