@@ -1,4 +1,4 @@
-import * as v from 'valibot';
+import { safeParse } from 'valibot';
 import { ConfigSchema } from './domain/validation';
 import { FetchFeedbackRepository } from './infrastructure/http/fetchAdapter';
 import { LocalUserStorageAdapter } from './infrastructure/storage/userAdapter';
@@ -7,7 +7,7 @@ import { FeedbackWidget } from './infrastructure/widget';
 
 class FeedbackSDK {
   static init(rawConfig: unknown) {
-    const configResult = v.safeParse(ConfigSchema, rawConfig);
+    const configResult = safeParse(ConfigSchema, rawConfig);
 
     if (!configResult.success) {
       console.error(

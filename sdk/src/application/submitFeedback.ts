@@ -1,7 +1,7 @@
 import type { Feedback, SDKConfig } from '../domain';
 import type { FeedbackRepository, UserStorage } from './ports';
 import { FeedbackSchema } from '../domain/validation';
-import * as v from 'valibot';
+import { safeParse } from 'valibot';
 
 export class SubmitFeedbackUseCase {
   private readonly repository: FeedbackRepository;
@@ -29,7 +29,7 @@ export class SubmitFeedbackUseCase {
       timestamp: new Date().toISOString(),
     };
 
-    const result = v.safeParse(FeedbackSchema, rawFeedback);
+    const result = safeParse(FeedbackSchema, rawFeedback);
     if (!result.success) {
       console.error(result.issues);
       throw new Error('VALIDATION_ERROR');

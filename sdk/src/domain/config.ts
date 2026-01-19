@@ -8,7 +8,7 @@ export interface SDKConfig {
     primaryColor?: string;
   };
 
-  onSuccess?: (_feedback: Feedback) => void;
-  onError?: (_error: Error) => void;
+  onSuccess?: (feedback: Feedback) => void;
+  onError?: (error: Error) => void;
   debug?: boolean;
 }

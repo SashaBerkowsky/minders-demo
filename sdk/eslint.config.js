@@ -32,4 +32,10 @@ export default [
     },
     ignores: ['node_modules/', 'dist/', 'coverage/'],
   },
+  {
+    files: ['src/domain/config.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
 ];

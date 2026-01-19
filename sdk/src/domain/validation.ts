@@ -1,37 +1,52 @@
-import * as v from 'valibot';
+import {
+  object,
+  pipe,
+  string,
+  minLength,
+  optional,
+  url,
+  boolean,
+  function as valFunction,
+  number,
+  integer,
+  minValue,
+  maxValue,
+  maxLength,
+} from 'valibot';
+import type { InferOutput } from 'valibot';
 
-export const ConfigSchema = v.object({
-  projectId: v.pipe(v.string(), v.minLength(1, 'Project ID is required.')),
-  apiKey: v.pipe(v.string(), v.minLength(1, 'API Key is required.')),
-  apiEndpoint: v.optional(v.pipe(v.string(), v.url('Invalid URL.'))),
+export const ConfigSchema = object({
+  projectId: pipe(string(), minLength(1, 'Project ID is required.')),
+  apiKey: pipe(string(), minLength(1, 'API Key is required.')),
+  apiEndpoint: optional(pipe(string(), url('Invalid URL.'))),
 
-  theme: v.optional(
-    v.object({
-      primaryColor: v.optional(v.string()),
-      backgroundColor: v.optional(v.string()),
-      textColor: v.optional(v.string()),
-      borderColor: v.optional(v.string()),
-      inputBackgroundColor: v.optional(v.string()),
+  theme: optional(
+    object({
+      primaryColor: optional(string()),
+      backgroundColor: optional(string()),
+      textColor: optional(string()),
+      borderColor: optional(string()),
+      inputBackgroundColor: optional(string()),
     }),
   ),
 
-  debug: v.optional(v.boolean()),
-  onSuccess: v.optional(v.function()),
-  onError: v.optional(v.function()),
+  debug: optional(boolean()),
+  onSuccess: optional(valFunction()),
+  onError: optional(valFunction()),
 });
 
-export const FeedbackSchema = v.object({
-  userId: v.string(),
-  rating: v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(5)),
-  comment: v.optional(
-    v.pipe(v.string(), v.maxLength(1000, 'Comment length exceeded.')),
+export const FeedbackSchema = object({
+  userId: string(),
+  rating: pipe(number(), integer(), minValue(1), maxValue(5)),
+  comment: optional(
+    pipe(string(), maxLength(1000, 'Comment length exceeded.')),
   ),
-  deviceInfo: v.object({
-    userAgent: v.string(),
-    url: v.string(),
+  deviceInfo: object({
+    userAgent: string(),
+    url: string(),
   }),
-  timestamp: v.string(),
+  timestamp: string(),
 });
 
-export type SDKConfig = v.InferOutput<typeof ConfigSchema>;
-export type FeedbackPayload = v.InferOutput<typeof FeedbackSchema>;
+export type SDKConfig = InferOutput<typeof ConfigSchema>;
+export type FeedbackPayload = InferOutput<typeof FeedbackSchema>;
