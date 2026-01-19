@@ -1,6 +1,7 @@
 import type { FeedbackController } from '../controllers'
 import type { RequestHandler } from 'express'
 import { Router } from 'express'
+import { config } from '@infrastructure/config'
 import { createFeedbackRouter } from './feedback'
 
 interface RouterDependencies {
@@ -14,7 +15,8 @@ export const createApiRouter = ({ feedbackController, authGuard }: RouterDepende
     router.get('/health', (_, res) => {
         res.status(200).json({
             status: 'ok',
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            env: config.environment
         });
     });
 

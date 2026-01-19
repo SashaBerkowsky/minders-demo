@@ -1,10 +1,10 @@
-import "dotenv/config";
+import { config } from '@infrastructure/config'
+import { authMiddleware } from '@infrastructure/http/middlewares';
 import { createServer } from '@infrastructure/http/server';
 import { createApiRouter } from '@infrastructure/http/routes';
 import { FeedbackController } from '@infrastructure/http/controllers';
 import { SubmitFeedbackUC } from '@application';
 import { PrismaFeedbackRepository, PrismaProjectRepository } from '@infrastructure/persistence';
-import { authMiddleware } from '@infrastructure/http/middlewares';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -25,10 +25,9 @@ const main = async () => {
 
     const app = createServer(apiRouter);
 
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        console.log(`🚀 Server ready at: http://localhost:${PORT}`);
-        console.log(`📡 Health check: http://localhost:${PORT}/api/feedback/health`);
+    app.listen(config.port, () => {
+        console.log(`🚀 Server ready at: http://localhost:${config.port}`);
+        console.log(`📡 Health check: http://localhost:${config.port}/api/feedback/health`);
     });
 }
 
