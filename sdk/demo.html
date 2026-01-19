@@ -47,14 +47,14 @@
       </p>
     </div>
 
-    <script src="./feedback-sdk.es.js"></script>
+    <script src="./dist/feedback-sdk.es.js"></script>
     <script>
       window.addEventListener("load", () => {
         if (window.FeedbackSDK) {
           window.FeedbackSDK.init({
             projectId: "0",
             apiKey: "minders_secret_key_0",
-            apiEndpoint: "http://localhost:4000/api/feedback",
+            apiEndpoint: "http://localhost:3000/api/feedback",
 
             // dark mode
             theme: {
