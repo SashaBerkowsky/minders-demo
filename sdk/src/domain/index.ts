@@ -1,2 +1,2 @@
-export * from './feedback'
-export * from './config'
+export * from './feedback';
+export * from './config';
