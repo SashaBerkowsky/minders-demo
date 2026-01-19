@@ -27,7 +27,7 @@ const main = async () => {
 
     app.listen(config.port, () => {
         console.log(`🚀 Server ready at: http://localhost:${config.port}`);
-        console.log(`📡 Health check: http://localhost:${config.port}/api/feedback/health`);
+        console.log(`📡 Health check: http://localhost:${config.port}/api/health`);
     });
 }
 
