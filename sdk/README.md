@@ -21,7 +21,7 @@ npm install minders-demo-sdk
 ### Via Script Tag
 
 ```html
-<script src="https://unpkg.com/minders-demo-sdk/dist/minders-feedback-sdk.umd.js"></script>
+<script src="https://unpkg.com/minders-demo-sdk@1.0.5/dist/minders-feedback-sdk.iife.js"></script>
 <script>
   window.FeedbackSDK.init({
     projectId: '0',
