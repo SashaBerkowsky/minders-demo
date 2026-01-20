@@ -6,16 +6,14 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/minders-feedback-sdk.cjs",
-  "module": "./dist/minders-feedback-sdk.js",
-  "browser": "./dist/minders-feedback-sdk.umd.js",
+  "main": "./dist/minders-feedback-sdk.iife.js",
+  "module": "./dist/minders-feedback-sdk.esm.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "browser": "./dist/minders-feedback-sdk.umd.js",
-      "import": "./dist/minders-feedback-sdk.js",
-      "require": "./dist/minders-feedback-sdk.cjs"
+      "import": "./dist/minders-feedback-sdk.esm.js",
+      "require": "./dist/minders-feedback-sdk.iife.js"
     }
   },
   "scripts": {
@@ -40,10 +38,10 @@
     "prettier": "^3.8.0",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.17"
   },
   "dependencies": {
-    "valibot": "^1.2.0",
-    "vitest": "^4.0.17"
+    "valibot": "^1.2.0"
   }
 }
