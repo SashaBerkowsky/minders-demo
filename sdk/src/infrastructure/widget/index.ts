@@ -112,13 +112,11 @@ export class FeedbackWidget {
       this.clearValidationErrors();
     });
 
-    // 3. Lógica de Envío
     const handleSubmit = async (): Promise<void> => {
       const comment = (
         this.root.querySelector('#comment') as HTMLTextAreaElement
       ).value;
 
-      // Client-side validation
       const validation = this.validateForm(this.rating, comment);
       if (!validation.isValid) {
         this.showValidationErrors(validation.errors);
@@ -126,7 +124,7 @@ export class FeedbackWidget {
       }
 
       this.clearValidationErrors();
-      this.toggleLoading(true); // <-- Iniciamos carga
+      this.toggleLoading(true);
       try {
         const feedback = await this.submitFeedbackUC.execute(
           this.rating,
@@ -146,7 +144,7 @@ export class FeedbackWidget {
           this.config.onError(e.message);
         }
       } finally {
-        this.toggleLoading(false); // <-- Terminamos carga
+        this.toggleLoading(false);
       }
     };
 
@@ -174,13 +172,11 @@ export class FeedbackWidget {
     if (!submitBtn || !retryBtn) return;
 
     if (isLoading) {
-      // Estado de carga: Deshabilitar y texto "..."
       submitBtn.textContent = '...';
       submitBtn.disabled = true;
       retryBtn.textContent = '...';
       retryBtn.disabled = true;
     } else {
-      // Estado normal: Habilitar y restaurar texto/iconos
       submitBtn.textContent = 'Submit';
       submitBtn.disabled = false;
       retryBtn.innerHTML = `${ICONS.refresh} Try again`;
