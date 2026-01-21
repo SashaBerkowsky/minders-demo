@@ -27,6 +27,7 @@ export const ConfigSchema = object({
       textColor: optional(string()),
       borderColor: optional(string()),
       inputBackgroundColor: optional(string()),
+      submitColor: optional(string()),
     }),
   ),
 

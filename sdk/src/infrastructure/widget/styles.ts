@@ -1,4 +1,15 @@
 export const componentStyles = `
+  :host {
+    /* DEFINICIÓN DE VARIABLES (Valores por defecto Light Mode) */
+    --fdbk-bg: #ffffff;
+    --fdbk-text: #1f2937;
+    --fdbk-submit-bg: #1f2937;
+    --fdbk-text-secondary: #6b7280;
+    --fdbk-border: #e5e7eb;
+    --fdbk-input-bg: #ffffff;
+    --fdbk-hover: #f3f4f6;
+  }
+
   .widget-container {
     position: fixed;
     bottom: 20px;
@@ -9,14 +20,6 @@ export const componentStyles = `
     flex-direction: column;
     align-items: flex-end;
     gap: 12px;
-    
-    /* DEFINICIÓN DE VARIABLES (Valores por defecto Light Mode) */
-    --fdbk-bg: #ffffff;
-    --fdbk-text: #1f2937;
-    --fdbk-text-secondary: #6b7280;
-    --fdbk-border: #e5e7eb;
-    --fdbk-input-bg: #ffffff;
-    --fdbk-hover: #f3f4f6;
   }
 
   .trigger-btn {
@@ -114,7 +117,7 @@ export const componentStyles = `
   .submit-btn {
     width: 100%;
     /* Botón de acción: Usamos el color de texto invertido o primario */
-    background-color: var(--fdbk-text); 
+    background-color: var(--fdbk-submit-bg); 
     color: var(--fdbk-bg);
     border: 1px solid var(--fdbk-border);
     padding: 10px;

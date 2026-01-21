@@ -43,6 +43,7 @@ export class FeedbackWidget {
       textColor: '--fdbk-text',
       borderColor: '--fdbk-border',
       inputBackgroundColor: '--fdbk-input-bg',
+      submitColor: '--fdbk-submit-bg',
     };
 
     Object.keys(mappings).forEach((key) => {
