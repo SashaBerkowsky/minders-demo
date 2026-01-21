@@ -1,4 +1,4 @@
-# Requirements Analysis: Minders Feedback Widget
+# Requirements Analysis
 
 ## Introduction
 This document outlines the mental framework used to approach the Minders feedback widget assignment. The solution was designed with a SaaS (Software as a Service) platform in mind, where multiple clients manage feedback for their projects via a centralized system.
