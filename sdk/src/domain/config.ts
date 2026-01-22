@@ -6,8 +6,12 @@ export interface SDKConfig {
   apiEndpoint?: string;
   theme?: {
     primaryColor?: string;
+    backgroundColor?: string;
+    textColor?: string;
+    borderColor?: string;
+    inputBackgroundColor?: string;
+    submitColor?: string;
   };
-
   onSuccess?: (feedback: Feedback) => void;
   onError?: (error: Error) => void;
   debug?: boolean;
