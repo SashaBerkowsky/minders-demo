@@ -34,20 +34,18 @@
   </head>
   <body>
     <div class="card">
-      <h1>Mi Tienda Online</h1>
+      <h1>My Online Store</h1>
       <p>
-        Esta es una página de prueba. Mira abajo a la derecha para ver el widget
-        de feedback flotante.
+          This is a test page. Look at the bottom right to see the floating feedback widget.
       </p>
       <p>
         <small
-          >Prueba desconectar tu internet y enviar feedback para ver el sistema
-          de reintentos.</small
+          >Try disconnecting your internet and sending feedback to see the retry system.</small
         >
       </p>
     </div>
 
-    <script src="https://unpkg.com/minders-demo-sdk@1.0.5/dist/minders-feedback-sdk.iife.js"></script>
+    <script src="https://unpkg.com/minders-demo-sdk@1.0.7/dist/minders-feedback-sdk.iife.js"></script>
     <script>
       window.addEventListener('load', () => {
         if (window.FeedbackSDK) {
@@ -63,6 +61,7 @@
               textColor: '#f4f4f5',
               borderColor: '#3f3f46',
               inputBackgroundColor: '#27272a',
+              submitColor: '#ffffff',
             },
           });
         }
