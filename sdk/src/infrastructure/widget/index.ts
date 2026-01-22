@@ -150,7 +150,11 @@ export class FeedbackWidget {
     };
 
     submitBtn?.addEventListener('click', handleSubmit);
-    retryBtn?.addEventListener('click', handleSubmit);
+    retryBtn?.addEventListener('click', () => {
+      this.toggleErrorView(false);
+      this.toggleSuccessView(false);
+      handleSubmit();
+    });
 
     cancelBtn?.addEventListener('click', () => {
       this.toggleErrorView(false);
