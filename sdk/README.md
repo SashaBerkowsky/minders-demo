@@ -63,6 +63,7 @@ FeedbackSDK.init({
   - `textColor`: Text color (e.g., "#1f2937").
   - `borderColor`: Border colors (e.g., "#d1d5db").
   - `inputBackgroundColor`: Input field backgrounds (e.g., "#f9fafb").
+  - `submitColor`: Submit button background (e.g., "#f9fafb").
 - `debug`: Enable logging.
 - `onSuccess/onError`: Callbacks.
 
